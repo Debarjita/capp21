@@ -66,7 +66,11 @@ const BookingPage = () => {
       `Your session with ${counsellor?.name || 'the counsellor'} is booked for ${selectedDate} at ${selectedTime} via ${selectedMode}.`,
       [
         {
-          text: 'OK',
+          text: 'Track Progress',
+          onPress: () => navigation.navigate('ProgressTracking'),
+        },
+        {
+          text: 'Done',
           onPress: () => navigation.navigate('Home'),
         },
       ]

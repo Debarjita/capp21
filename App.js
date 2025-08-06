@@ -13,6 +13,8 @@ import AgePhotoUpload from './ageverification';
 import Question from './question';
 import Counsellor from './councellor';
 import BookingPage from './booking';
+import ProgressTracking from './progresstracking';
+import EducationalHub from './educationalhub';
 
 const Stack = createStackNavigator();
 
@@ -93,6 +95,8 @@ export default function App() {
         <Stack.Screen name="Question" component={Question} />
         <Stack.Screen name="Counsellor" component={Counsellor} />
         <Stack.Screen name="Booking" component={BookingPage} options={{ title: 'Book Session' }} />
+        <Stack.Screen name="ProgressTracking" component={ProgressTracking} options={{ title: 'Progress Tracking' }} />
+        <Stack.Screen name="EducationalHub" component={EducationalHub} options={{ title: 'Educational Hub' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
