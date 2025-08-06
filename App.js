@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, SafeAreaVie
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { LinearGradient } from 'expo-linear-gradient';
-import CreateAccountScreen from './createacc'; // assuming this file exists
+import CreateAccountScreen from './createacc';
 import LocationScreen from './location';
 import LocationPopup from './locationpopup';
 import PhotoUpload from './photoupload';
@@ -12,29 +12,32 @@ import Photoaiverification from './photoaiverification';
 import AgePhotoUpload from './ageverification';
 import Question from './question';
 import Counsellor from './councellor';
+import BookingPage from './booking';
 
 const Stack = createStackNavigator();
 
 function HomeScreen({ navigation }) {
-  console.log("Rendering HomeScreen"); // Add this for debugging
+  console.log("Rendering HomeScreen");
+  
+  // Simple login handler - just navigate to Question page
+  const handleLogin = () => {
+    navigation.navigate('Question');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
-      {/* Background Gradient */}
       <LinearGradient
-        colors={['#000000', '#002C75', '#00E5FF']} // Gradient colors
+        colors={['#000000', '#002C75', '#00E5FF']}
         style={styles.background}
       >
-        {/* Title */}
         <Text style={styles.title}>LAMPY</Text>
 
-        {/* Logo */}
         <Image 
           source={require('./assets/Screenshot 2024-11-03 225544.png')} 
           style={styles.logo} 
           resizeMode="contain"
         />    
 
-        {/* Subtitle */}
         <View style={styles.subtitleContainer}>
           <Text style={styles.subtitle}>
             May the firefly follow you{'\n'}
@@ -42,7 +45,6 @@ function HomeScreen({ navigation }) {
           </Text>
         </View>
 
-        {/* Input Fields */}
         <View style={styles.inputContainer}>
           <Text style={styles.label}>NAME</Text>
           <TextInput 
@@ -59,14 +61,12 @@ function HomeScreen({ navigation }) {
           />
         </View>
 
-        {/* Login Button */}
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>login</Text>
         </TouchableOpacity>
 
         <Text style={styles.instructions}>Or</Text>
 
-        {/* Create Account Button */}
         <TouchableOpacity 
           style={styles.button} 
           onPress={() => navigation.navigate('CreateAccount')}
@@ -92,7 +92,7 @@ export default function App() {
         <Stack.Screen name="AgePhotoUpload" component={AgePhotoUpload} />
         <Stack.Screen name="Question" component={Question} />
         <Stack.Screen name="Counsellor" component={Counsellor} />
-        
+        <Stack.Screen name="Booking" component={BookingPage} options={{ title: 'Book Session' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -101,14 +101,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-      // Ensures the container takes up full screen
   },
   background: {
-    flex: 1,  // Ensure gradient fills the entire screen
-    justifyContent: 'center',  // Center content vertically
-    alignItems: 'center',  // Center content horizontally
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 40,
-    
   },
   logo: {
     width: 200,
@@ -120,7 +118,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#fff',
     marginBottom: 20,
-    
   },
   subtitleContainer: {
     width: '100%',

@@ -1,70 +1,107 @@
 import React from 'react';
 import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const counsellors = [
   {
     id: 1,
-    name: 'John Smith',
+    name: 'Dr. Sonia Puar',
     role: 'Clinical Psychologist',
-    experience: '40 Yrs',
+    experience: '8 Yrs',
     qualification: 'M.Phil, M.A, PH.D',
-    price: '₹5000',
     rating: '4.8 (143 Ratings)',
-    image: require('./assets/ci.png'), // Placeholder image path
+    image: require('./assets/c1.png'),
   },
   {
     id: 2,
-    name: 'Sarah Johnson',
+    name: 'Dr. Jyotika Goyal',
     role: 'Counselling Psychologist',
-    experience: '3 Yrs',
-    qualification: 'B.A, M.Sc',
-    price: '₹800',
-    rating: '4.7 (22 Ratings)',
-    image: require('./assets/ci.png'),
+    experience: '5 Yrs',
+    qualification: 'Ph.D, M.A',
+    rating: '4.7 (89 Ratings)',
+    image: require('./assets/Screenshot 2025-08-06 195237.png'),
   },
   {
     id: 3,
-    name: 'Michael Lee',
-    role: 'Counselling Psychologist',
-    experience: '3 Yrs',
-    qualification: 'MA, MBA',
-    price: '₹1000',
-    rating: '4.7 (92 Ratings)',
-    image: require('./assets/ci.png'),
+    name: 'Rishmitha Sachdeva',
+    role: 'Psychology Student',
+    experience: '2 Yrs',
+    qualification: 'M.Sc Psychology',
+    rating: '4.6 (45 Ratings)',
+    image: require('./assets/Screenshot 2025-08-06 195359.png'),
   },
   {
     id: 4,
-    name: 'Emily Davis',
-    role: 'Psychotherapist',
-    experience: '25 Yrs',
-    qualification: 'MA, M.Phil, Ph.D',
-    price: '₹3400',
-    rating: '4.9 (14 Ratings)',
-    image: require('./assets/ci.png'),
+    name: 'Nadia Ishfaq Nahvi',
+    role: 'Mental Health Supervisor',
+    experience: '6 Yrs',
+    qualification: 'M.Phil Clinical Psychology',
+    rating: '4.9 (67 Ratings)',
+    image: require('./assets/Screenshot 2025-08-06 195406.png'),
   },
   {
     id: 5,
-    name: 'Daniel Brown',
-    role: 'Psychiatrist',
-    experience: '5 Yrs',
-    qualification: 'MBBS, MD',
-    price: '₹1000',
-    rating: '4.7 (6 Ratings)',
-    image: require('./assets/ci.png'),
+    name: 'Anees Raina',
+    role: 'Clinical Psychologist',
+    experience: '4 Yrs',
+    qualification: 'M.A Psychology',
+    rating: '4.7 (52 Ratings)',
+    image: require('./assets/Screenshot 2025-08-06 195412.png'),
   },
   {
     id: 6,
-    name: 'Sophia Wilson',
-    role: 'Psychologist',
-    experience: '35 Yrs',
-    qualification: 'B.A, M.Phil, M.A, PG Diploma',
-    price: '₹1200',
-    rating: '4.7 (190 Ratings)',
-    image: require('./assets/ci.png'),
+    name: 'Jagmeet Singh',
+    role: 'Clinical Psychologist',
+    experience: '3 Yrs',
+    qualification: 'M.A Psychology',
+    rating: '4.5 (38 Ratings)',
+    image: require('./assets/Screenshot 2025-08-06 195419.png'),
+  },
+  {
+    id: 7,
+    name: 'Apoorvi Shrivastava',
+    role: 'Clinical Psychologist',
+    experience: '5 Yrs',
+    qualification: 'M.A Psychology',
+    rating: '4.7 (78 Ratings)',
+    image: require('./assets/Screenshot 2025-08-06 195425.png'),
+  },
+  {
+    id: 8,
+    name: 'Sreetama Bhaduri',
+    role: 'Clinical Psychologist (RCI Registered)',
+    experience: '7 Yrs',
+    qualification: 'M.Phil, RCI License',
+    rating: '4.8 (156 Ratings)',
+    image: require('./assets/Screenshot 2025-08-06 195430.png'),
+  },
+  {
+    id: 9,
+    name: 'Ananya Purkayastha',
+    role: 'Clinical Psychologist',
+    experience: '4 Yrs',
+    qualification: 'M.Phil Clinical Psychology',
+    rating: '4.7 (92 Ratings)',
+    image: require('./assets/Screenshot 2025-08-06 195436.png'),
+  },
+  {
+    id: 10,
+    name: 'Tanmay Bhargava',
+    role: 'HR Psychology Consultant',
+    experience: '6 Yrs',
+    qualification: 'MBA Psychology',
+    rating: '4.6 (89 Ratings)',
+    image: require('./assets/Screenshot 2025-08-06 195425.png'),
   },
 ];
 
 const Counsellor = () => {
+  const navigation = useNavigation();
+
+  const handleBookSession = (counsellor) => {
+    navigation.navigate('Booking', { counsellor });
+  };
+
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -82,13 +119,13 @@ const Counsellor = () => {
               <Text style={styles.role}>{counsellor.role}</Text>
               <Text style={styles.details}>{counsellor.experience} | {counsellor.qualification}</Text>
               <Text style={styles.rating}>⭐ {counsellor.rating}</Text>
-              <Text style={styles.price}>Session starting at {counsellor.price}</Text>
+              <Text style={styles.price}>First session free</Text>
               <View style={styles.buttonsContainer}>
-                <TouchableOpacity style={styles.bookButton}>
+                <TouchableOpacity 
+                  style={styles.bookButton}
+                  onPress={() => handleBookSession(counsellor)}
+                >
                   <Text style={styles.buttonText}>Book a session</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.profileButton}>
-                  <Text style={styles.buttonText}>View Profile</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -164,7 +201,7 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#0078D7',
+    color: '#4CAF50',
   },
   buttonsContainer: {
     flexDirection: 'row',
@@ -174,17 +211,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#FF5678',
     padding: 8,
     borderRadius: 5,
-    marginRight: 10,
-  },
-  profileButton: {
-    backgroundColor: '#0078D7',
-    padding: 8,
-    borderRadius: 5,
+    flex: 1,
   },
   buttonText: {
     color: '#fff',
     fontSize: 12,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   footer: {
     backgroundColor: '#0078D7',
